@@ -73,11 +73,42 @@ impl<T> LinkedList<T> {
 	{
 		//TODO
         let mut outcome_lis = LinkedList::new();
-		Self {
-            length: 0,
-            start: None,
-            end: None,
+        let mut a_start = list_a.start;
+        let mut b_start = list_b.start;
+
+        while let (Some(a_ptr), Some(b_ptr)) = (a_start, b_start) {
+            unsafe {
+                if (*a_ptr.as_ptr()).val <= (*b_ptr.as_ptr()).val {
+                    merged_list.add((*a_ptr.as_ptr()).val);
+                    a_start = (*a_ptr.as_ptr()).next;
+                } else {
+                    merged_list.add((*b_ptr.as_ptr()).val);
+                    b_start = (*b_ptr.as_ptr()).next;
+                }
+            }
         }
+
+        while let Some(a_ptr) = a_start {
+            unsafe {
+                merged_list.add((*a_ptr.as_ptr()).val);
+                a_start = (*a_ptr.as_ptr()).next;
+            }
+        }
+
+        while let Some(b_ptr) = b_start {
+            unsafe {
+                merged_list.add((*b_ptr.as_ptr()).val);
+                b_start = (*b_ptr.as_ptr()).next;
+            }
+        }
+
+        outcome_lis
+    
+		// Self {
+        //     length: 0,
+        //     start: None,
+        //     end: None,
+        // }
 	}
 }
 
