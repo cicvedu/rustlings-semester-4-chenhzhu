@@ -1,3 +1,61 @@
+# ALGORITHM
+ 
+[[exercises]]
+name = "algorithm1"
+path = "exercises/algorithm/algorithm1.rs"
+mode = "compile"
+hint = "No hints this time ;)"
+
+[[exercises]]
+name = "algorithm2"
+path = "exercises/algorithm/algorithm2.rs"
+mode = "compile"
+hint = "No hints this time ;)"
+
+[[exercises]]
+name = "algorithm4"
+path = "exercises/algorithm/algorithm4.rs"
+mode = "compile"
+hint = "No hints this time ;)"
+
+[[exercises]]
+name = "algorithm5"
+path = "exercises/algorithm/algorithm5.rs"
+mode = "compile"
+hint = "No hints this time ;)"
+
+[[exercises]]
+name = "algorithm6"
+path = "exercises/algorithm/algorithm6.rs"
+mode = "compile"
+hint = "No hints this time ;)"
+
+[[exercises]]
+name = "algorithm7"
+path = "exercises/algorithm/algorithm7.rs"
+mode = "compile"
+hint = "No hints this time ;)"
+
+[[exercises]]
+name = "algorithm8"
+path = "exercises/algorithm/algorithm8.rs"
+mode = "compile"
+hint = "No hints this time ;)"
+
+[[exercises]]
+name = "algorithm9"
+path = "exercises/algorithm/algorithm9.rs"
+mode = "compile"
+hint = "No hints this time ;)"
+
+[[exercises]]
+name = "algorithm10"
+path = "exercises/algorithm/algorithm10.rs"
+mode = "compile"
+hint = "No hints this time ;)"
+
+
+
 # INTRO
 
 # [[exercises]]
