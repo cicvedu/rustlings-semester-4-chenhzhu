@@ -28,13 +28,13 @@ struct LinkedList<T> {
     end: Option<NonNull<Node<T>>>,
 }
 
-impl<T> Default for LinkedList<T> {
+impl<T: Ord + Clone> Default for LinkedList<T> {
     fn default() -> Self {
         Self::new()
     }
 }
 
-impl<T> LinkedList<T> {
+impl<T: Ord + Clone> LinkedList<T> {
     pub fn new() -> Self {
         Self {
             length: 0,
@@ -76,29 +76,48 @@ impl<T> LinkedList<T> {
         let mut b_iter = list_b.start;
 
         while let (Some(a_ptr), Some(b_ptr)) = (a_iter, b_iter) {
-            unsafe {
-                if (*a_ptr.as_ptr()).val <= (*b_ptr.as_ptr()).val {
-                    outcome_lis.add((*a_ptr.as_ptr()).val);
-                    a_iter = (*a_ptr.as_ptr()).next;
-                } else {
-                    outcome_lis.add((*b_ptr.as_ptr()).val);
-                    b_iter = (*b_ptr.as_ptr()).next;
-                }
+            let a_val = unsafe { a_ptr.as_ref() }.val.clone();
+            let b_val = unsafe { b_ptr.as_ref() }.val.clone();
+
+            // unsafe {
+            //     if (*a_ptr.as_ptr()).val <= (*b_ptr.as_ptr()).val {
+            //         outcome_lis.add((*a_ptr.as_ptr()).val);
+            //         a_iter = (*a_ptr.as_ptr()).next;
+            //     } else {
+            //         outcome_lis.add((*b_ptr.as_ptr()).val);
+            //         b_iter = (*b_ptr.as_ptr()).next;
+            //     }
+            // }
+            if a_val <= b_val {
+                outcome_lis.add(a_val);
+                a_iter = unsafe { (*a_ptr.as_ptr()).next };
+            } else {
+                outcome_lis.add(b_val);
+                b_iter = unsafe { (*b_ptr.as_ptr()).next };
             }
         }
 
+        // while let Some(a_ptr) = a_iter {
+        //     unsafe {
+        //         outcome_lis.add((*a_ptr.as_ptr()).val);
+        //         a_iter = (*a_ptr.as_ptr()).next;
+        //     }
+        // }
+
+        // while let Some(b_ptr) = b_iter {
+        //     unsafe {
+        //         outcome_lis.add((*b_ptr.as_ptr()).val);
+        //         b_iter = (*b_ptr.as_ptr()).next;
+        //     }
+        // }
         while let Some(a_ptr) = a_iter {
-            unsafe {
-                outcome_lis.add((*a_ptr.as_ptr()).val);
-                a_iter = (*a_ptr.as_ptr()).next;
-            }
+            outcome_lis.add(unsafe { (*a_ptr.as_ptr()).val });
+            a_iter = unsafe { (*a_ptr.as_ptr()).next };
         }
 
         while let Some(b_ptr) = b_iter {
-            unsafe {
-                outcome_lis.add((*b_ptr.as_ptr()).val);
-                b_iter = (*b_ptr.as_ptr()).next;
-            }
+            outcome_lis.add(unsafe { (*b_ptr.as_ptr()).val });
+            b_iter = unsafe { (*b_ptr.as_ptr()).next };
         }
 
         outcome_lis
