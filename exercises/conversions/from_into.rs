@@ -40,10 +40,50 @@ impl Default for Person {
 // If while parsing the age, something goes wrong, then return the default of
 // Person Otherwise, then return an instantiated Person object with the results
 
-// I AM NOT DONE
-
 impl From<&str> for Person {
     fn from(s: &str) -> Person {
+        if s.is_empty() {
+            return Person::default();
+        }
+        else {
+            let s_split: Vec<&str> = s.split(',').collect();
+        
+            if s_split.len() != 2 {
+                return Person::default();
+            }
+        
+            let name = s_split[0].to_string();
+            if name.is_empty() {
+                return Person::default();
+            }
+        
+            match s_split[1].parse::<usize>() {
+                Ok(age) => Person {name, age},
+                Err(_) => Person::default(),
+            }
+        }
+
+
+        // if s.is_empty() {
+        //     Person::default()
+        // } else {
+        //     let mut iter = s.split(',');
+        //     let name = match iter.next() {
+        //         Some("") | None => return Person::default(),
+        //         Some(x) => String::from(x)
+        //     };
+        //     let age = match iter.next() {
+        //         Some(x) => match x.parse::<usize>() {
+        //             Ok(x) => x,
+        //             Err(_) => return Person::default(),
+        //         },
+        //         None => return Person::default(),
+        //     };
+        //     match iter.next() {
+        //         Some(_) => return Person::default(),
+        //         None => return Person{name, age},
+        //     };
+        // }
     }
 }
 
@@ -138,3 +178,6 @@ mod tests {
         assert_eq!(p.age, 30);
     }
 }
+
+
+
