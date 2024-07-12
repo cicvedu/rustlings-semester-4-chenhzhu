@@ -13,6 +13,12 @@ mode = "test"
 hint = "No hints this time ;)"
 
 [[exercises]]
+name = "algorithm3"
+path = "exercises/algorithm/algorithm3.rs"
+mode = "test"
+hint = "No hints this time ;)"
+
+[[exercises]]
 name = "algorithm4"
 path = "exercises/algorithm/algorithm4.rs"
 mode = "test"
