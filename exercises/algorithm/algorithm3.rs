@@ -4,11 +4,11 @@
 	you can use bubble sorting, insertion sorting, heap sorting, etc.
 */
 
-fn sort<T>(array: &mut [T]){
+fn sort<T: std::cmp::PartialOrd>(array: &mut [T]){
 	//TODO insert sorting
     for i in 1..array.len() {
         let mut j = i;
-        while j > 0 && array[j - 1] < array[j] {
+        while j > 0 && array[j - 1] > array[j] {
             array.swap(j - 1, j);
             j -= 1;
         }
